@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://y4e6xavoypyb"]
+
+[ext_resource type="Script" uid="uid://thiav63lercy" path="res://player.gd" id="1_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://dmsdwfhn8syml" path="res://Animations/player/idle/frame0000.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dwopgyeyo1ofg" path="res://Animations/player/attack/frame0000.png" id="2_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dcjcr5q1ngdp2" path="res://Animations/player/attack/frame0001.png" id="3_bwjto"]
+[ext_resource type="Texture2D" uid="uid://cya1253y000fc" path="res://Animations/player/idle/frame0001.png" id="3_sweqy"]
+[ext_resource type="Texture2D" uid="uid://6xg5l0lc8oh6" path="res://Animations/player/idle/frame0002.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://c63vb6osow32t" path="res://Animations/player/attack/frame0002.png" id="4_606se"]
+[ext_resource type="Texture2D" uid="uid://d3xyht8jp2bok" path="res://Animations/player/walk/frame0000.png" id="5_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://c3o37hh4r4711" path="res://Animations/player/mid_air/frame0001.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://c74hvl6y8h62a" path="res://Animations/player/walk/frame0001.png" id="6_dw050"]
+[ext_resource type="Texture2D" uid="uid://cy2c6xpxtore2" path="res://Animations/player/attack/frame0004.png" id="6_op7ga"]
+[ext_resource type="Texture2D" uid="uid://gmlym3402v46" path="res://Animations/player/walk/frame0002.png" id="7_b26j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
+size = Vector2(31, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_op7ga")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 30.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hqtel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": true,
+"name": &"mid_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1jxqw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
+size = Vector2(33.5, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urp6f"]
+size = Vector2(30, 57)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2147483648
+script = ExtResource("1_1jxqw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2hs0m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.01, 1.01)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="PivotNode" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PivotNode"]
+position = Vector2(5.96046e-08, 4.76837e-07)
+scale = Vector2(1.5, 1.516)
+sprite_frames = SubResource("SpriteFrames_1jxqw")
+animation = &"attack"
+frame_progress = 0.829284
+offset = Vector2(7.095, 0.275)
+
+[node name="hitbox" type="Area2D" parent="PivotNode" groups=["player"]]
+position = Vector2(34, -1)
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotNode/hitbox"]
+shape = SubResource("RectangleShape2D_ivps1")
+
+[node name="hurtbox" type="Area2D" parent="PivotNode"]
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotNode/hurtbox"]
+shape = SubResource("RectangleShape2D_urp6f")

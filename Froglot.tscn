@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://br82453cy5tc"]
+
+[ext_resource type="Script" uid="uid://co3gs3yglqei1" path="res://Froglot.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://x1w3x41238ch" path="res://icon.svg" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(32.25, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epg4t"]
+size = Vector2(32, 66)
+
+[node name="Froglot" type="CharacterBody2D" groups=["Enemies"]]
+position = Vector2(-1, -1)
+collision_layer = 2
+collision_mask = 2147483648
+script = ExtResource("1_4gyqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="PivotNode" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PivotNode"]
+scale = Vector2(0.261719, 0.515625)
+texture = ExtResource("1_7k104")
+
+[node name="hurtbox" type="Area2D" parent="PivotNode"]
+collision_layer = 2
+collision_mask = 2147483649
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PivotNode/hurtbox"]
+shape = SubResource("RectangleShape2D_epg4t")
+
+[node name="WallCheck" type="RayCast2D" parent="PivotNode"]
+target_position = Vector2(37, 0)
+collision_mask = 2147483648
+
+[node name="EdgeCheck" type="RayCast2D" parent="PivotNode"]
+position = Vector2(37, 0)
+target_position = Vector2(171, 112)
+collision_mask = 2147483648
+
+[node name="LineOfSight" type="RayCast2D" parent="PivotNode" groups=["Enemies"]]
+position = Vector2(1, 28)
+target_position = Vector2(745, 0)
+
+[connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]

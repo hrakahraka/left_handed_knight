@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://pu6301kx0sxo"]
+
+[ext_resource type="Texture2D" uid="uid://x1w3x41238ch" path="res://icon.svg" id="1_mi635"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mi635"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8bxr"]
+size = Vector2(518, 123.5)
+
+[node name="platform" type="StaticBody2D"]
+position = Vector2(194, 26)
+collision_layer = 2147483648
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_mi635")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1.50012, 7)
+scale = Vector2(4.08594, 1)
+texture = ExtResource("1_mi635")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6.75)
+shape = SubResource("RectangleShape2D_s8bxr")
+debug_color = Color(0.910008, 0.297469, 5.77569e-07, 0.42)

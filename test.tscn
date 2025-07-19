@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkkdvfedbsteu"]
+
+[ext_resource type="PackedScene" uid="uid://pu6301kx0sxo" path="res://platform.tscn" id="1_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://y4e6xavoypyb" path="res://player.tscn" id="2_s8bxr"]
+[ext_resource type="PackedScene" uid="uid://br82453cy5tc" path="res://Froglot.tscn" id="3_6uqi0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_s8bxr")]
+position = Vector2(511, 152)
+
+[node name="Froglot" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(120, 164)
+
+[node name="Froglot2" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(-648, 27)
+
+[node name="platform5" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(1231, -49)
+rotation = 1.54985
+
+[node name="platform" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(541, 258)
+
+[node name="platform2" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(1041, 258)
+
+[node name="platform3" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(53, 258)
+
+[node name="platform6" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(-462, 391)
+
+[node name="platform7" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(-628, 125)
