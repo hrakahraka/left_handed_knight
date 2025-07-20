@@ -4,8 +4,8 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var jump_force = 600
-@export var damage_value = 50
-@export var HP_points = 200
+@export var damage_value = 2
+@export var HP_points = 4
 @export var gravity = 1500
 @onready var anim_tree =  get_node("PivotNode/AnimationTree")
 
@@ -82,12 +82,12 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if enemy.is_in_group("Enemies"):
 		enemy_pos = enemy.global_position
 		hit = true
-		
+		HP_points -= enemy.damage_value
 		if enemy_pos < global_position:
-			velocity.x += 400
+			velocity.x += enemy.knockback_power
 			velocity.y += -150
 		else:
-			velocity.x += -400
+			velocity.x += -enemy.knockback_power
 			velocity.y += -150
 	await get_tree().create_timer(0.1).timeout
 	hit = false

@@ -1,13 +1,15 @@
 extends CharacterBody2D
 var change_direction = false
 @export var speed = 200
-@export var damage_value = 20
-@export var HP_points = 150
+@export var damage_value = 1
+@export var HP_points = 2
 @export var gravity = 1500
+@export var knockback_power = 400
 var direction = 1
 var player = null
 var player_pos = Vector2.ZERO
 var player_detected = false
+var jumpable = false
 
 
 func _ready() :
@@ -20,9 +22,13 @@ func _physics_process(delta):
 		player_detected = true
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	else:
-		velocity.x = speed * direction
-		velocity.y -= 300
+		$PivotNode/AnimatedSprite2D.play("jump")
+	elif is_on_floor():
+		$PivotNode/AnimatedSprite2D.play("idle")
+		velocity = Vector2.ZERO
+		if jumpable:
+			velocity.x = speed * direction
+			velocity.y = -300
 	if not player_detected :
 		if $PivotNode/WallCheck.is_colliding() or not ($PivotNode/EdgeCheck.is_colliding()):
 			direction *= -1
@@ -45,6 +51,7 @@ func _process(delta: float) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	player_pos = player.global_position
 	if player.is_attacking :
+		HP_points -= player.damage_value
 		if player_pos < global_position:
 			velocity.x += 500
 			velocity.y += -200
@@ -53,3 +60,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			velocity.y += -200
 	else:
 		pass
+
+
+func _on_timer_timeout() -> void:
+	jumpable = true
+	await get_tree().create_timer(0.3).timeout
+	jumpable = false
