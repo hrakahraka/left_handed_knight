@@ -7,13 +7,13 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_s8bxr")]
-position = Vector2(511, 152)
+position = Vector2(1188, -338)
 
 [node name="Froglot" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(120, 164)
 
 [node name="Froglot2" parent="." instance=ExtResource("3_6uqi0")]
-position = Vector2(-648, 27)
+position = Vector2(-723, -155)
 
 [node name="platform5" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(1231, -49)

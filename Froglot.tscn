@@ -24,7 +24,7 @@ shape = SubResource("RectangleShape2D_4gyqm")
 scale = Vector2(0.261719, 0.515625)
 texture = ExtResource("1_7k104")
 
-[node name="hurtbox" type="Area2D" parent="PivotNode"]
+[node name="hurtbox" type="Area2D" parent="PivotNode" groups=["Enemies"]]
 collision_layer = 2
 collision_mask = 2147483649
 
@@ -40,8 +40,8 @@ position = Vector2(37, 0)
 target_position = Vector2(171, 112)
 collision_mask = 2147483648
 
-[node name="LineOfSight" type="RayCast2D" parent="PivotNode" groups=["Enemies"]]
+[node name="LineOfSight" type="RayCast2D" parent="PivotNode"]
 position = Vector2(1, 28)
-target_position = Vector2(745, 0)
+target_position = Vector2(549, 0)
 
 [connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]
