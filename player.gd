@@ -12,9 +12,9 @@ extends CharacterBody2D
 var double_jump = false
 var jump_window_timer = 0
 var is_attacking = false
-var enemy = null
 var enemy_pos = Vector2.ZERO
 var hit = false
+var enemy = null
 var knockback_timer = 0.0
 const JUMP_WINDOW = 0.01
 const KNOCKBACK_DURATION = 1
@@ -78,9 +78,11 @@ func _process(delta):
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemies"):
-		enemy_pos = area.global_position
+	enemy = area.get_parent().get_parent()
+	if enemy.is_in_group("Enemies"):
+		enemy_pos = enemy.global_position
 		hit = true
+		
 		if enemy_pos < global_position:
 			velocity.x += 400
 			velocity.y += -150
