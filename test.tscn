@@ -9,6 +9,12 @@
 
 [node name="Player" parent="." instance=ExtResource("2_s8bxr")]
 position = Vector2(1192, -459)
+speed = 400
+jump_force = 600
+damage_value = 2
+max_health = 4
+level = 1
+gravity = 1500
 
 [node name="HUD" parent="Player" instance=ExtResource("2_ppyta")]
 
