@@ -5,6 +5,7 @@ var change_direction = false
 @export var HP_points = 2
 @export var gravity = 1500
 @export var knockback_power = 400
+@export var xp_gain = 10
 var direction = 1
 var player = null
 var player_pos = Vector2.ZERO

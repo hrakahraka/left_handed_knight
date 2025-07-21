@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var speed = 400
 @export var jump_force = 600
 @export var damage_value = 2
-@export var HP_points = 4
+@export var max_health = 4
+var HP_points = 4
+@export var level = 1
 @export var gravity = 1500
 @onready var anim_tree =  get_node("PivotNode/AnimationTree")
 
@@ -18,6 +20,8 @@ var enemy = null
 var knockback_timer = 0.0
 const JUMP_WINDOW = 0.01
 const KNOCKBACK_DURATION = 1
+var xp_points = 0
+var xp_for_next_level = 200
 
 
 func _ready():
@@ -82,7 +86,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if enemy.is_in_group("Enemies"):
 		enemy_pos = enemy.global_position
 		hit = true
-		HP_points -= enemy.damage_value
+		HP_points = clamp(HP_points - enemy.damage_value, 0, max_health)
+		$HUD.update_heart()
 		if enemy_pos < global_position:
 			velocity.x += enemy.knockback_power
 			velocity.y += -150
@@ -91,3 +96,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			velocity.y += -150
 	await get_tree().create_timer(0.1).timeout
 	hit = false
+func level_up():
+	max_health += 1
+	HP_points = max_health
+	$HUD.add_heart()
+	xp_points = 0
+	xp_for_next_level = level * 200

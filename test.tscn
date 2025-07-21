@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkkdvfedbsteu"]
+[gd_scene load_steps=5 format=3 uid="uid://bkkdvfedbsteu"]
 
 [ext_resource type="PackedScene" uid="uid://pu6301kx0sxo" path="res://platform.tscn" id="1_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://d37pt2ypvap4f" path="res://HUD.tscn" id="2_ppyta"]
 [ext_resource type="PackedScene" uid="uid://y4e6xavoypyb" path="res://player.tscn" id="2_s8bxr"]
 [ext_resource type="PackedScene" uid="uid://br82453cy5tc" path="res://Froglot.tscn" id="3_6uqi0"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_s8bxr")]
-position = Vector2(-17, 162)
+position = Vector2(1192, -459)
+
+[node name="HUD" parent="Player" instance=ExtResource("2_ppyta")]
 
 [node name="Froglot" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(110, 172)
