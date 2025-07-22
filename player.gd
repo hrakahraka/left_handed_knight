@@ -4,7 +4,8 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var jump_force = 600
-@export var damage_value = 2
+@export var damage_value = 1
+@export var checkpoint_path :NodePath
 @export var max_health = 4
 var HP_points = 4
 @export var level = 1
@@ -24,15 +25,20 @@ var xp_points = 0
 var xp_for_next_level = 200
 var level_up_count = 0
 var dead = false
+var checkpoint :Marker2D
 
 
 func _ready():
 	add_to_group("player")
+	checkpoint = get_node(checkpoint_path)
+	load_progress()
+	global_position = checkpoint.global_position
 
 
 func _physics_process(delta):
 	if HP_points == 0 and is_on_floor():
 			dead = true
+			$HUD/RespawnButton.visible = true
 	if not dead:
 		var direction = 0
 		if Input.is_action_pressed("move_right"):
@@ -136,3 +142,21 @@ func _on_level_up_timer_timeout() -> void:
 func update_labels():
 	$HUD/XpLabel.text = "XP: " + str(xp_points) + "/" +str(xp_for_next_level)
 	$HUD/Level.text = "Level: " + str(level)
+
+
+func _on_hud_respawn() -> void:
+	dead = false
+	HP_points = max_health
+	$HUD.update_heart()
+	save_progress()
+	get_tree().reload_current_scene()
+
+
+func _on_checkpoint_reached():
+	checkpoint.global_position = global_position
+func save_progress():
+	pass #save player xp, max_health, checkpoint position, maybe other things
+
+
+func load_progress():
+	pass

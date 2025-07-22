@@ -49,10 +49,13 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="RespawnButton" type="Button" parent="."]
+visible = false
 offset_left = 412.0
 offset_top = 275.0
 offset_right = 766.0
 offset_bottom = 365.0
 theme_override_font_sizes/font_size = 33
 text = "Respawn"
+
+[connection signal="pressed" from="RespawnButton" to="." method="_on_respawn_button_pressed"]

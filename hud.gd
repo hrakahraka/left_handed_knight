@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal respawn
+
 @onready var heart_container = $HeartContainer
 var full_heart = preload("res://HUD/hearts/Heart_full.png")
 var empty_heart = preload("res://HUD/hearts/Heart_empty.png")
@@ -26,3 +28,8 @@ func add_heart():
 	new_heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	heart_container.add_child(new_heart)
 	update_heart()
+
+
+func _on_respawn_button_pressed() -> void:
+	$RespawnButton.visible = false
+	emit_signal("respawn")

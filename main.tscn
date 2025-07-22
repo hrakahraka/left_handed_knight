@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkkdvfedbsteu"]
+
+[ext_resource type="Script" uid="uid://dipnu5p2gyry4" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://y4e6xavoypyb" path="res://player.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d37pt2ypvap4f" path="res://HUD.tscn" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://br82453cy5tc" path="res://Froglot.tscn" id="4_5vw27"]
+[ext_resource type="PackedScene" uid="uid://pu6301kx0sxo" path="res://platform.tscn" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://df1s72b62gtjm" path="res://checkpoint_mark.tscn" id="6_7mycd"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_lquwl")
+
+[node name="Player" parent="." instance=ExtResource("2_7mycd")]
+position = Vector2(1192, -459)
+checkpoint_path = NodePath("../Checkpoint")
+
+[node name="HUD" parent="Player" instance=ExtResource("3_272bh")]
+
+[node name="Froglot" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(110, 172)
+
+[node name="Froglot2" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-822, 50)
+
+[node name="Froglot3" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-410, 309)
+
+[node name="Froglot4" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-595, 296)
+
+[node name="Froglot5" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(287, 178)
+
+[node name="Froglot6" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-314, 284)
+
+[node name="Froglot7" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-120, 183)
+
+[node name="platform5" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(1231, -49)
+rotation = 1.54985
+
+[node name="platform3" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(53, 258)
+
+[node name="platform" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(541, 258)
+
+[node name="platform2" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(1041, 258)
+
+[node name="platform6" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(-462, 391)
+
+[node name="platform7" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(-628, 125)
+
+[node name="Checkpoint" type="Marker2D" parent="."]
+position = Vector2(1214, -375)
+
+[node name="CheckpointMark" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(-633, 58)
+
+[connection signal="respawn" from="Player/HUD" to="Player" method="_on_hud_respawn"]
