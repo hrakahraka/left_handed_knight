@@ -9,12 +9,6 @@
 
 [node name="Player" parent="." instance=ExtResource("2_s8bxr")]
 position = Vector2(1192, -459)
-speed = 400
-jump_force = 600
-damage_value = 2
-max_health = 4
-level = 1
-gravity = 1500
 
 [node name="HUD" parent="Player" instance=ExtResource("2_ppyta")]
 
@@ -24,18 +18,33 @@ position = Vector2(110, 172)
 [node name="Froglot2" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(-692, 9)
 
+[node name="Froglot3" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(-410, 309)
+
+[node name="Froglot4" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(-595, 296)
+
+[node name="Froglot5" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(287, 178)
+
+[node name="Froglot6" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(-552, 37)
+
+[node name="Froglot7" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(-120, 183)
+
 [node name="platform5" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(1231, -49)
 rotation = 1.54985
+
+[node name="platform3" parent="." instance=ExtResource("1_8uh7m")]
+position = Vector2(53, 258)
 
 [node name="platform" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(541, 258)
 
 [node name="platform2" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(1041, 258)
-
-[node name="platform3" parent="." instance=ExtResource("1_8uh7m")]
-position = Vector2(53, 258)
 
 [node name="platform6" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(-462, 391)

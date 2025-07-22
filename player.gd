@@ -22,6 +22,7 @@ const JUMP_WINDOW = 0.01
 const KNOCKBACK_DURATION = 1
 var xp_points = 0
 var xp_for_next_level = 200
+var level_up_count = 0
 var dead = false
 
 
@@ -44,7 +45,7 @@ func _physics_process(delta):
 			velocity.x = 0
 		if not is_on_floor():
 			jump_window_timer += delta
-			if Input.is_action_just_released("jump"):
+			if Input.is_action_just_released("jump") and velocity.y < 0:
 				velocity.y = 0
 			if Input.is_action_just_pressed("jump") and double_jump:
 				velocity.y = -jump_force + 200
@@ -70,6 +71,9 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	if xp_points >= xp_for_next_level:
+		level_up()
+	update_labels()
 	if not dead:
 		if velocity.x != 0 :
 			if velocity.x < 0:
@@ -107,8 +111,28 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 
 func level_up():
-	max_health += 1
+	$LevelUpTimer.start()
+	level += 1
+	$LevelUp.visible = true
+	level_up_count += 1 
+	if level_up_count >= 2:
+		max_health += 1
+		level_up_count = 0
+		$HUD.add_heart()
 	HP_points = max_health
-	$HUD.add_heart()
-	xp_points = 0
+	$HUD.update_heart()
+	damage_value += 1
+	xp_points = xp_points - xp_for_next_level
 	xp_for_next_level = level * 200
+
+
+func _on_enemy_died(xp_gain):
+	xp_points += xp_gain
+
+func _on_level_up_timer_timeout() -> void:
+	$LevelUp.visible = false
+
+
+func update_labels():
+	$HUD/XpLabel.text = "XP: " + str(xp_points) + "/" +str(xp_for_next_level)
+	$HUD/Level.text = "Level: " + str(level)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://y4e6xavoypyb"]
+[gd_scene load_steps=98 format=3 uid="uid://y4e6xavoypyb"]
 
 [ext_resource type="Script" uid="uid://thiav63lercy" path="res://player.gd" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cnfd8k6n1uich" path="res://Animations/player/attack/bottom/frame0.png" id="2_5tmop"]
@@ -692,12 +692,13 @@ graph_offset = Vector2(15, 31.3554)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(25.75, 54)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7hik5"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 2147483648
 script = ExtResource("1_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_2hs0m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -711,14 +712,14 @@ position_smoothing_speed = 7.0
 position = Vector2(2.38419e-07, 19)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hl5qd")
-animation = &""
+animation = &"attack"
 offset = Vector2(1.045, 0.385)
 
 [node name="PlayerTop" type="AnimatedSprite2D" parent="PivotNode"]
 position = Vector2(0, -5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ek41f")
-animation = &""
+animation = &"idle"
 offset = Vector2(7.415, 0)
 
 [node name="SwordSlash" type="AnimatedSprite2D" parent="PivotNode"]
@@ -753,7 +754,6 @@ parameters/walk/Add2/add_amount = 1.0
 parameters/walk/TimeScale/scale = 0.5
 
 [node name="hitbox" type="Area2D" parent="PivotNode"]
-visible = false
 position = Vector2(35, 2)
 collision_mask = 0
 metadata/_edit_group_ = true
@@ -763,7 +763,6 @@ position = Vector2(-3.875, -2)
 shape = SubResource("RectangleShape2D_ivps1")
 
 [node name="hurtbox" type="Area2D" parent="PivotNode"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 metadata/_edit_group_ = true
@@ -771,4 +770,18 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PivotNode/hurtbox"]
 shape = SubResource("RectangleShape2D_2hs0m")
 
+[node name="LevelUp" type="Label" parent="."]
+visible = false
+offset_left = -36.0
+offset_top = -55.0
+offset_right = 48.0
+offset_bottom = -32.0
+theme_override_colors/font_color = Color(0.870588, 0.670588, 0, 1)
+text = "Level UP !!!"
+label_settings = SubResource("LabelSettings_7hik5")
+
+[node name="LevelUpTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="LevelUpTimer" to="." method="_on_level_up_timer_timeout"]

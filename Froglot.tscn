@@ -1,14 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://br82453cy5tc"]
+[gd_scene load_steps=10 format=3 uid="uid://br82453cy5tc"]
 
 [ext_resource type="Script" uid="uid://co3gs3yglqei1" path="res://Froglot.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://bjwre5tiwo5ij" path="res://Animations/enemies/froglot/death/Froglot_0002.png" id="2_8pd2i"]
 [ext_resource type="Texture2D" uid="uid://dcsjfk546c8d4" path="res://Animations/enemies/froglot/idle/untitled_0001.png" id="2_gmf8b"]
+[ext_resource type="Texture2D" uid="uid://doq7rldbaoyei" path="res://Animations/enemies/froglot/death/Froglot_0003.png" id="3_jdcsj"]
 [ext_resource type="Texture2D" uid="uid://ceaifgb17ov87" path="res://Animations/enemies/froglot/jump/untitled_0002.png" id="3_sj0qi"]
+[ext_resource type="Texture2D" uid="uid://d28d1wd7x4u07" path="res://Animations/enemies/froglot/death/Froglot_0004.png" id="4_qfkng"]
+[ext_resource type="Texture2D" uid="uid://by7lpxlnqylaj" path="res://Animations/enemies/froglot/death/Froglot_0005.png" id="5_j0fwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wknwh"]
 size = Vector2(44, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2aptd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8pd2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jdcsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qfkng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j0fwj")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_gmf8b")
