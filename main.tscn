@@ -20,7 +20,7 @@ checkpoint_path = NodePath("../Checkpoint")
 position = Vector2(110, 172)
 
 [node name="Froglot2" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-822, 50)
+position = Vector2(-514, 263)
 
 [node name="Froglot3" parent="." instance=ExtResource("4_5vw27")]
 position = Vector2(-410, 309)
@@ -36,6 +36,9 @@ position = Vector2(-314, 284)
 
 [node name="Froglot7" parent="." instance=ExtResource("4_5vw27")]
 position = Vector2(-120, 183)
+
+[node name="Froglot8" parent="." instance=ExtResource("4_5vw27")]
+position = Vector2(-9, 147)
 
 [node name="platform5" parent="." instance=ExtResource("5_kek77")]
 position = Vector2(1231, -49)

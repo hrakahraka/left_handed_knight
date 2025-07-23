@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 signal killed(xp_gain)
 
-var change_direction = false
+
 @export var speed = 200
 @export var damage_value = 1
 @export var HP_points = 2
 @export var gravity = 1500
 @export var knockback_power = 400
 @export var xp_gain = 30
+
 var direction = 1
 var player = null
 var player_pos = Vector2.ZERO
@@ -16,6 +17,7 @@ var player_detected = false
 var jumpable = false
 var dead = false
 var death_animation_played = false
+var change_direction = false
 
 
 func _ready() :

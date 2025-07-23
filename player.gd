@@ -7,11 +7,11 @@ extends CharacterBody2D
 @export var damage_value = 1
 @export var checkpoint_path :NodePath
 @export var max_health = 4
-var HP_points = 4
 @export var level = 1
 @export var gravity = 1500
 @onready var anim_tree =  get_node("PivotNode/AnimationTree")
 
+var HP_points = 4
 var double_jump = false
 var jump_window_timer = 0
 var is_attacking = false
@@ -19,13 +19,16 @@ var enemy_pos = Vector2.ZERO
 var hit = false
 var enemy = null
 var knockback_timer = 0.0
-const JUMP_WINDOW = 0.01
-const KNOCKBACK_DURATION = 1
 var xp_points = 0
 var xp_for_next_level = 200
 var level_up_count = 0
 var dead = false
 var checkpoint :Marker2D
+var save_path = "res://Saves/save.json"
+var added_hearts = 0
+
+const JUMP_WINDOW = 0.01
+const KNOCKBACK_DURATION = 1
 
 
 func _ready():
@@ -125,6 +128,7 @@ func level_up():
 		max_health += 1
 		level_up_count = 0
 		$HUD.add_heart()
+		added_hearts += 1
 	HP_points = max_health
 	$HUD.update_heart()
 	damage_value += 1
@@ -148,15 +152,45 @@ func _on_hud_respawn() -> void:
 	dead = false
 	HP_points = max_health
 	$HUD.update_heart()
-	save_progress()
 	get_tree().reload_current_scene()
 
 
 func _on_checkpoint_reached():
 	checkpoint.global_position = global_position
-func save_progress():
-	pass #save player xp, max_health, checkpoint position, maybe other things
+	HP_points = max_health
+	$HUD.update_heart()
+	save_progress()
+
+
+func save_progress(): #save player xp, max_health, checkpoint position, maybe other things
+	var save_content ={
+		"xp" = xp_points,
+		"max" = max_health,
+		"chpos_x" = checkpoint.global_position.x,
+		"chpos_y" = checkpoint.global_position.y,
+		"lvl" = level ,
+		"lvl_count" = level_up_count,
+		"add_hearts" = added_hearts
+	}
+	var file = FileAccess.open(save_path , FileAccess.WRITE)
+	var json = JSON.stringify(save_content)
+	file.store_string(json)
+	file.close()
 
 
 func load_progress():
-	pass
+	if FileAccess.file_exists(save_path) == true:
+		var file = FileAccess.open(save_path , FileAccess.READ)
+		var content = file.get_as_text()
+		var save_content = JSON.parse_string(content)
+		xp_points = int(save_content["xp"])
+		max_health = int(save_content["max"])
+		checkpoint.global_position = Vector2(save_content["chpos_x"], save_content["chpos_y"])
+		level = int(save_content["lvl"])
+		level_up_count = save_content["lvl_count"]
+		added_hearts = save_content["add_hearts"]
+		HP_points = max_health
+		xp_for_next_level = level * 200
+		for i in range(added_hearts):
+			$HUD.add_heart()
+		$HUD.update_heart()

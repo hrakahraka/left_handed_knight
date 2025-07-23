@@ -27,7 +27,6 @@ func add_heart():
 	new_heart.texture = full_heart
 	new_heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	heart_container.add_child(new_heart)
-	update_heart()
 
 
 func _on_respawn_button_pressed() -> void:
