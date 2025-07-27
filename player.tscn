@@ -687,7 +687,7 @@ states/mid_air/position = Vector2(560.667, 96.8167)
 states/walk/node = SubResource("AnimationNodeBlendTree_2wuci")
 states/walk/position = Vector2(427.901, 184.173)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv")]
-graph_offset = Vector2(15, 31.3554)
+graph_offset = Vector2(-104, -42.645)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(25.75, 54)
@@ -709,17 +709,18 @@ position_smoothing_speed = 7.0
 [node name="PivotNode" type="Node2D" parent="."]
 
 [node name="PlayerBottom" type="AnimatedSprite2D" parent="PivotNode"]
+modulate = Color(0.999034, 1, 0.971364, 1)
 position = Vector2(2.38419e-07, 19)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hl5qd")
-animation = &""
+animation = &"idle"
 offset = Vector2(1.045, 0.385)
 
 [node name="PlayerTop" type="AnimatedSprite2D" parent="PivotNode"]
 position = Vector2(0, -5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ek41f")
-animation = &""
+animation = &"idle"
 offset = Vector2(7.415, 0)
 
 [node name="SwordSlash" type="AnimatedSprite2D" parent="PivotNode"]

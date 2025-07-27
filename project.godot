@@ -14,6 +14,10 @@ config/name="Left_Handed_Knight"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://global.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"

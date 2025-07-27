@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d37pt2ypvap4f"]
+[gd_scene load_steps=5 format=3 uid="uid://d37pt2ypvap4f"]
 
 [ext_resource type="Script" uid="uid://dd3cd0epwknyd" path="res://hud.gd" id="1_efote"]
 [ext_resource type="Texture2D" uid="uid://4pisanhtq2h7" path="res://HUD/hearts/Heart_full.png" id="2_vow1y"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_efote"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_vow1y"]
+events = [SubResource("InputEventKey_efote")]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_efote")
@@ -56,6 +63,7 @@ offset_top = 275.0
 offset_right = 766.0
 offset_bottom = 365.0
 theme_override_font_sizes/font_size = 33
+shortcut = SubResource("Shortcut_vow1y")
 text = "Respawn"
 
 [connection signal="pressed" from="RespawnButton" to="." method="_on_respawn_button_pressed"]

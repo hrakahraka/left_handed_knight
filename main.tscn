@@ -11,58 +11,57 @@
 script = ExtResource("1_lquwl")
 
 [node name="Player" parent="." instance=ExtResource("2_7mycd")]
-position = Vector2(1192, -459)
+position = Vector2(-22, -84)
 checkpoint_path = NodePath("../Checkpoint")
 
 [node name="HUD" parent="Player" instance=ExtResource("3_272bh")]
 
 [node name="Froglot" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(110, 172)
+position = Vector2(-1075, 529)
 
 [node name="Froglot2" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-514, 263)
+position = Vector2(-1699, 620)
 
 [node name="Froglot3" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-410, 309)
+position = Vector2(-1595, 666)
 
 [node name="Froglot4" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-595, 296)
+position = Vector2(-1780, 653)
 
 [node name="Froglot5" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(287, 178)
+position = Vector2(-898, 535)
 
 [node name="Froglot6" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-314, 284)
+position = Vector2(-1499, 641)
 
 [node name="Froglot7" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-120, 183)
+position = Vector2(-1305, 540)
 
 [node name="Froglot8" parent="." instance=ExtResource("4_5vw27")]
-position = Vector2(-9, 147)
+position = Vector2(-1194, 504)
 
 [node name="platform5" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(1231, -49)
+position = Vector2(17, 326)
 rotation = 1.54985
 
 [node name="platform3" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(53, 258)
+position = Vector2(-1132, 615)
 
 [node name="platform" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(541, 258)
+position = Vector2(-644, 615)
 
 [node name="platform2" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(1041, 258)
+position = Vector2(-144, 615)
 
 [node name="platform6" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(-462, 391)
+position = Vector2(-1647, 748)
 
 [node name="platform7" parent="." instance=ExtResource("5_kek77")]
-position = Vector2(-628, 125)
+position = Vector2(-1813, 482)
 
 [node name="Checkpoint" type="Marker2D" parent="."]
-position = Vector2(1214, -375)
 
 [node name="CheckpointMark" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(-633, 58)
+position = Vector2(-1818, 415)
 
 [connection signal="respawn" from="Player/HUD" to="Player" method="_on_hud_respawn"]

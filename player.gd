@@ -24,8 +24,10 @@ var xp_for_next_level = 200
 var level_up_count = 0
 var dead = false
 var checkpoint :Marker2D
-var save_path = "res://Saves/save.json"
+var save_folder = "res://Saves/"
 var added_hearts = 0
+var player_name = Global.player_name
+var current_level  = "res://main.tscn"
 
 const JUMP_WINDOW = 0.01
 const KNOCKBACK_DURATION = 1
@@ -40,8 +42,10 @@ func _ready():
 
 func _physics_process(delta):
 	if HP_points == 0 and is_on_floor():
-			dead = true
-			$HUD/RespawnButton.visible = true
+		is_attacking = false
+		dead = true
+		await get_tree().create_timer(2).timeout
+		$HUD/RespawnButton.visible = true
 	if not dead:
 		var direction = 0
 		if Input.is_action_pressed("move_right"):
@@ -162,15 +166,19 @@ func _on_checkpoint_reached():
 	save_progress()
 
 
-func save_progress(): #save player xp, max_health, checkpoint position, maybe other things
+func save_progress():
+	var save_path = save_folder + player_name + ".LHK"
 	var save_content ={
+		"name" = player_name,
 		"xp" = xp_points,
 		"max" = max_health,
 		"chpos_x" = checkpoint.global_position.x,
 		"chpos_y" = checkpoint.global_position.y,
 		"lvl" = level ,
 		"lvl_count" = level_up_count,
-		"add_hearts" = added_hearts
+		"add_hearts" = added_hearts,
+		"damage" = damage_value,
+		"current_level" = current_level
 	}
 	var file = FileAccess.open(save_path , FileAccess.WRITE)
 	var json = JSON.stringify(save_content)
@@ -179,16 +187,20 @@ func save_progress(): #save player xp, max_health, checkpoint position, maybe ot
 
 
 func load_progress():
+	var save_path = save_folder + player_name + ".LHK"
 	if FileAccess.file_exists(save_path) == true:
 		var file = FileAccess.open(save_path , FileAccess.READ)
 		var content = file.get_as_text()
 		var save_content = JSON.parse_string(content)
+		player_name = save_content["name"]
 		xp_points = int(save_content["xp"])
 		max_health = int(save_content["max"])
 		checkpoint.global_position = Vector2(save_content["chpos_x"], save_content["chpos_y"])
 		level = int(save_content["lvl"])
 		level_up_count = save_content["lvl_count"]
 		added_hearts = save_content["add_hearts"]
+		damage_value = save_content["damage"]
+		current_level = save_content["current_level"]
 		HP_points = max_health
 		xp_for_next_level = level * 200
 		for i in range(added_hearts):

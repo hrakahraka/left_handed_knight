@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=3 uid="uid://k7saa4rupxgr"]
+
+[ext_resource type="Texture2D" uid="uid://evj3tt0xlrjk" path="res://Main_Menue_Textures/ButtonTexture(newgame).PNG.png" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://cfkpdh260y3gq" path="res://Main_Menue_Textures/BackGround.png" id="1_fu7sn"]
+[ext_resource type="Script" uid="uid://xjhpwhvq2klc" path="res://main_menu.gd" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://cmf2kbubgldoc" path="res://Main_Menue_Textures/ButtonTexture(loadgame).PNG.png" id="2_fu7sn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -321.0
+offset_right = 575.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jix8l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fu7sn")
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.5
+offset_top = -129.0
+offset_right = 175.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="NewGameButton" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("1_7vrkn")
+clip_text = true
+
+[node name="LoadGameButton" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("2_fu7sn")
+
+[node name="NewGameWindow" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(600, 250)
+
+[node name="LineEdit" type="LineEdit" parent="NewGameWindow"]
+offset_left = 46.0
+offset_top = 73.0
+offset_right = 568.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+placeholder_text = "Enter your Name"
+alignment = 1
+
+[node name="ConfirmNewGameButton" type="Button" parent="NewGameWindow"]
+offset_left = 189.0
+offset_top = 172.0
+offset_right = 415.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0, 0.454902, 1, 1)
+text = "confirm"
+
+[node name="Label" type="Label" parent="NewGameWindow"]
+offset_left = 139.0
+offset_top = 124.0
+offset_right = 477.0
+offset_bottom = 162.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadGameWindow" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(600, 300)
+visible = false
+
+[node name="SavesList" type="ItemList" parent="LoadGameWindow"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -298.0
+offset_right = 298.0
+offset_bottom = 237.0
+grow_horizontal = 2
+
+[node name="ConfirmLoadGameButton" type="Button" parent="LoadGameWindow"]
+offset_left = 187.0
+offset_top = 251.0
+offset_right = 413.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(0, 0.454902, 1, 1)
+text = "confirm"
+
+[connection signal="pressed" from="Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Buttons/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="close_requested" from="NewGameWindow" to="." method="_on_new_game_window_close_requested"]
+[connection signal="pressed" from="NewGameWindow/ConfirmNewGameButton" to="." method="_on_confirm_new_game_button_pressed"]
+[connection signal="close_requested" from="LoadGameWindow" to="." method="_on_load_game_window_close_requested"]
