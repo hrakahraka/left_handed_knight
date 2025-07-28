@@ -109,3 +109,4 @@ text = "confirm"
 [connection signal="close_requested" from="NewGameWindow" to="." method="_on_new_game_window_close_requested"]
 [connection signal="pressed" from="NewGameWindow/ConfirmNewGameButton" to="." method="_on_confirm_new_game_button_pressed"]
 [connection signal="close_requested" from="LoadGameWindow" to="." method="_on_load_game_window_close_requested"]
+[connection signal="pressed" from="LoadGameWindow/ConfirmLoadGameButton" to="." method="_on_confirm_load_game_button_pressed"]

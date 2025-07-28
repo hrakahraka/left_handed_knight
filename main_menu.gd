@@ -30,9 +30,7 @@ func _on_load_game_window_close_requested() -> void:
 func _on_confirm_new_game_button_pressed() -> void:
 	var name = $NewGameWindow/LineEdit.text 
 	if not (name == ""):
-		####################################
-		if (name + ".LHK") in save_folder:## check later
-		####################################
+		if FileAccess.file_exists("res://Saves/" + name + ".LHK"):
 			$NewGameWindow/Label.text = "This Name Already Exists"
 			return
 		save_progress(name)
@@ -58,3 +56,7 @@ func save_progress(name):
 	var json = JSON.stringify(initial_content)
 	file.store_string(json)
 	file.close()
+
+
+func _on_confirm_load_game_button_pressed() -> void:
+	pass
