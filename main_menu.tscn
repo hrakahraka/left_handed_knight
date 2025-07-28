@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://k7saa4rupxgr"]
+[gd_scene load_steps=6 format=3 uid="uid://k7saa4rupxgr"]
 
 [ext_resource type="Texture2D" uid="uid://evj3tt0xlrjk" path="res://Main_Menue_Textures/ButtonTexture(newgame).PNG.png" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://cfkpdh260y3gq" path="res://Main_Menue_Textures/BackGround.png" id="1_fu7sn"]
 [ext_resource type="Script" uid="uid://xjhpwhvq2klc" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://cmf2kbubgldoc" path="res://Main_Menue_Textures/ButtonTexture(loadgame).PNG.png" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://dcsjfk546c8d4" path="res://Animations/enemies/froglot/idle/untitled_0001.png" id="5_glbon"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,7 @@ icon = ExtResource("2_fu7sn")
 [node name="NewGameWindow" type="Window" parent="."]
 initial_position = 1
 size = Vector2i(600, 250)
+visible = false
 
 [node name="LineEdit" type="LineEdit" parent="NewGameWindow"]
 offset_left = 46.0
@@ -104,9 +106,28 @@ offset_bottom = 294.0
 theme_override_colors/font_color = Color(0, 0.454902, 1, 1)
 text = "confirm"
 
+[node name="QuitGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -96.0
+offset_right = -41.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "Quit Game"
+icon = ExtResource("5_glbon")
+autowrap_mode = 3
+
 [connection signal="pressed" from="Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Buttons/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="close_requested" from="NewGameWindow" to="." method="_on_new_game_window_close_requested"]
 [connection signal="pressed" from="NewGameWindow/ConfirmNewGameButton" to="." method="_on_confirm_new_game_button_pressed"]
 [connection signal="close_requested" from="LoadGameWindow" to="." method="_on_load_game_window_close_requested"]
 [connection signal="pressed" from="LoadGameWindow/ConfirmLoadGameButton" to="." method="_on_confirm_load_game_button_pressed"]
+[connection signal="pressed" from="QuitGameButton" to="." method="_on_quit_game_button_pressed"]
