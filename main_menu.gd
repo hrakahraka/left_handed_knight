@@ -38,7 +38,7 @@ func _on_confirm_new_game_button_pressed() -> void:
 			return
 		save_progress(name)
 		Global.player_name = name
-		get_tree().change_scene_to_file("res://main.tscn")
+		get_tree().change_scene_to_file("res://Level1.tscn")
 
 
 func save_progress(name):
@@ -53,7 +53,7 @@ func save_progress(name):
 		"lvl_count" = 0,
 		"add_hearts" = 0,
 		"damage" = 1,
-		"current_level" = "res://main.tscn"
+		"current_level" = "res://Level1.tscn"
 	}
 	var file = FileAccess.open(save_path , FileAccess.WRITE)
 	var json = JSON.stringify(initial_content)
@@ -71,7 +71,7 @@ func _on_confirm_load_game_button_pressed() -> void:
 		var file = FileAccess.open(save_path , FileAccess.READ)
 		var content = file.get_as_text()
 		var save_content = JSON.parse_string(content)
-		var load_level = save_content.get("current_level", "res://main.tscn")
+		var load_level = save_content.get("current_level", "res://Level1.tscn")
 		Global.player_name = save_content.get("name", "unknown")
 		get_tree().change_scene_to_file(load_level)
 
@@ -103,4 +103,4 @@ func load_saves():
 
 
 func _on_quit_game_button_pressed() -> void:
-	pass # Later
+	get_tree().quit()

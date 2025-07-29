@@ -687,7 +687,7 @@ states/mid_air/position = Vector2(560.667, 96.8167)
 states/walk/node = SubResource("AnimationNodeBlendTree_2wuci")
 states/walk/position = Vector2(427.901, 184.173)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv")]
-graph_offset = Vector2(-104, -42.645)
+graph_offset = Vector2(-73, 67.355)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(25.75, 54)
@@ -784,5 +784,8 @@ label_settings = SubResource("LabelSettings_7hik5")
 [node name="LevelUpTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="LevelUpTimer" to="." method="_on_level_up_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

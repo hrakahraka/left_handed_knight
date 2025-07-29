@@ -27,7 +27,9 @@ var checkpoint :Marker2D
 var save_folder = "res://Saves/"
 var added_hearts = 0
 var player_name = Global.player_name
-var current_level  = "res://main.tscn"
+var current_level  = "res://Level1.tscn"
+var main_menu = preload("res://main_menu.tscn")
+var invincible = false
 
 const JUMP_WINDOW = 0.01
 const KNOCKBACK_DURATION = 1
@@ -38,6 +40,7 @@ func _ready():
 	checkpoint = get_node(checkpoint_path)
 	load_progress()
 	global_position = checkpoint.global_position
+	$Camera2D.reset_smoothing()
 
 
 func _physics_process(delta):
@@ -106,7 +109,11 @@ func _process(delta):
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if not dead:
+	if (not dead) and (not invincible):
+		$InvincibilityTimer.start()
+		invincible = true
+		flash_on_hit()
+		flashing()
 		enemy = area.get_parent().get_parent()
 		if enemy.is_in_group("Enemies"):
 			enemy_pos = enemy.global_position
@@ -206,3 +213,28 @@ func load_progress():
 		for i in range(added_hearts):
 			$HUD.add_heart()
 		$HUD.update_heart()
+
+
+func _on_invincibility_timer_timeout() -> void:
+	invincible = false
+	$PivotNode/PlayerBottom.modulate.a = 1.0
+	$PivotNode/PlayerTop.modulate.a = 1.0
+
+
+func flash_on_hit():
+	if not dead:
+		$PivotNode/PlayerTop.modulate = Color(20, 20, 20)  
+		$PivotNode/PlayerBottom.modulate = Color(20, 20, 20)
+		await get_tree().create_timer(0.1).timeout 
+		$PivotNode/PlayerTop.modulate = Color(1, 1, 1)  
+		$PivotNode/PlayerBottom.modulate = Color(1, 1, 1)
+
+
+func flashing():
+	while invincible and (not dead):
+		$PivotNode/PlayerTop.visible = false
+		$PivotNode/PlayerBottom.visible = false
+		await get_tree().create_timer(0.1).timeout
+		$PivotNode/PlayerTop.visible = true
+		$PivotNode/PlayerBottom.visible = true
+		await get_tree().create_timer(0.1).timeout
