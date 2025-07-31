@@ -4,6 +4,8 @@ extends Control
 var save_folder = "res://Saves/"
 var save_files = []
 var icon :Texture2D
+var fullscreen_icon = preload("res://Main_Menue_Textures/FullScreen.png")
+var windowed_icon = preload("res://Main_Menue_Textures/Windowed.png")
 
 
 func _ready() -> void:
@@ -12,6 +14,12 @@ func _ready() -> void:
 	$LoadGameWindow.hide()
 	$NewGameWindow.hide()
 	load_saves()
+
+func _process(delta: float) -> void:
+	if get_window().mode == Window.MODE_FULLSCREEN:
+		$ToggleScreenButton.icon = fullscreen_icon
+	elif get_window().mode == Window.MODE_WINDOWED:
+		$ToggleScreenButton.icon = windowed_icon
 
 
 func _on_new_game_button_pressed() -> void:
@@ -104,3 +112,10 @@ func load_saves():
 
 func _on_quit_game_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_toggle_screen_button_pressed() -> void:
+	if get_window().mode != Window.MODE_FULLSCREEN:
+		get_window().mode = Window.MODE_FULLSCREEN
+	elif  get_window().mode != Window.MODE_WINDOWED:
+		get_window().mode = Window.MODE_WINDOWED

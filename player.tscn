@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://y4e6xavoypyb"]
+[gd_scene load_steps=99 format=3 uid="uid://y4e6xavoypyb"]
 
 [ext_resource type="Script" uid="uid://thiav63lercy" path="res://player.gd" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cnfd8k6n1uich" path="res://Animations/player/attack/bottom/frame0.png" id="2_5tmop"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dhgvse6qhpa6u" path="res://Animations/player/death/Top/frame1.png" id="18_iruf7"]
 [ext_resource type="Texture2D" uid="uid://2l81ii0jy1wp" path="res://Animations/player/walk/Top/frame2.png" id="18_tkwlq"]
 [ext_resource type="Texture2D" uid="uid://bch5oril18718" path="res://Animations/player/SwordSlash/frame0005.png" id="22_7ahtn"]
+[ext_resource type="PackedScene" uid="uid://b0gjo88aimvif" path="res://pause_menu.tscn" id="27_qtqh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 size = Vector2(31, 56)
@@ -785,6 +786,8 @@ label_settings = SubResource("LabelSettings_7hik5")
 wait_time = 2.0
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+
+[node name="PauseMenu" parent="." instance=ExtResource("27_qtqh7")]
 
 [connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="LevelUpTimer" to="." method="_on_level_up_timer_timeout"]
