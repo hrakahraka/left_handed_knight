@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdf3oxlivjlj0"]
+
+[ext_resource type="Texture2D" uid="uid://y0t63w0b1kld" path="res://ParallaxBackground/GrassLands/Sky.jpg" id="1_oabld"]
+[ext_resource type="Texture2D" uid="uid://cddhvb2msri0" path="res://ParallaxBackground/GrassLands/SmallHill.png" id="2_xehqc"]
+[ext_resource type="Texture2D" uid="uid://bqdxmo3iqt2fh" path="res://ParallaxBackground/GrassLands/BigHill.png" id="3_splo0"]
+
+[node name="BackgroundGrassLands" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+texture_filter = 1
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture_filter = 1
+scale = Vector2(1.87745, 2.11111)
+texture = ExtResource("1_oabld")
+centered = false
+
+[node name="Hills" type="ParallaxLayer" parent="."]
+texture_filter = 1
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="Hills"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 576.062
+offset_top = 489.625
+offset_right = 1179.06
+offset_bottom = 646.625
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+color = Color(0, 1, 0.447059, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Hills"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 490.0
+offset_right = 605.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+color = Color(0, 1, 0.447059, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Hills"]
+texture_filter = 1
+position = Vector2(90, 403)
+scale = Vector2(2.9875, 8.98333)
+texture = ExtResource("3_splo0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Hills"]
+texture_filter = 1
+position = Vector2(931, 421)
+scale = Vector2(3.47, 9.345)
+texture = ExtResource("2_xehqc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Hills"]
+texture_filter = 1
+position = Vector2(666, 378)
+scale = Vector2(2.9875, 9.96042)
+texture = ExtResource("3_splo0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Hills"]
+texture_filter = 1
+position = Vector2(371, 414)
+scale = Vector2(3.47, 9.6325)
+texture = ExtResource("2_xehqc")

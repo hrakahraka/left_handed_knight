@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://y4e6xavoypyb"]
+[gd_scene load_steps=101 format=3 uid="uid://y4e6xavoypyb"]
 
 [ext_resource type="Script" uid="uid://thiav63lercy" path="res://player.gd" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cnfd8k6n1uich" path="res://Animations/player/attack/bottom/frame0.png" id="2_5tmop"]
@@ -584,7 +584,7 @@ animation = &"idle_top"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pgbbb"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_331ug"]
-graph_offset = Vector2(-77.7501, 80.8029)
+graph_offset = Vector2(96, 93.3333)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_5tmop")
 nodes/Add2/position = Vector2(586.667, 213.333)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_b88wv")
@@ -673,22 +673,26 @@ node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Time
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b88wv"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtqh7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2wuci"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j5n4i"]
-states/Start/position = Vector2(245.333, 100.593)
+states/Start/position = Vector2(426.091, -34.0737)
 states/attack_stand/node = SubResource("AnimationNodeBlendTree_j5n4i")
-states/attack_stand/position = Vector2(428.222, -46.3333)
+states/attack_stand/position = Vector2(212.222, 100.333)
 states/attack_walk/node = SubResource("AnimationNodeBlendTree_hl5qd")
-states/attack_walk/position = Vector2(428.14, 290.951)
+states/attack_walk/position = Vector2(212.249, 288.284)
 states/death/node = SubResource("AnimationNodeBlendTree_634y6")
-states/death/position = Vector2(757.667, 206.804)
+states/death/position = Vector2(397.667, 197.471)
 states/idle/node = SubResource("AnimationNodeBlendTree_331ug")
 states/idle/position = Vector2(426.667, 95.1734)
 states/mid_air/node = SubResource("AnimationNodeBlendTree_1xqrm")
-states/mid_air/position = Vector2(560.667, 96.8167)
+states/mid_air/position = Vector2(571.334, 99.0833)
 states/walk/node = SubResource("AnimationNodeBlendTree_2wuci")
-states/walk/position = Vector2(427.901, 184.173)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv")]
-graph_offset = Vector2(-73, 67.355)
+states/walk/position = Vector2(560.478, 294.84)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv"), "attack_stand", "attack_walk", SubResource("AnimationNodeStateMachineTransition_qtqh7"), "attack_walk", "attack_stand", SubResource("AnimationNodeStateMachineTransition_2wuci")]
+graph_offset = Vector2(-234, -69.645)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(25.75, 54)
@@ -696,16 +700,12 @@ size = Vector2(25.75, 54)
 [sub_resource type="LabelSettings" id="LabelSettings_7hik5"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+texture_filter = 1
 collision_mask = 2147483648
 script = ExtResource("1_1jxqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2hs0m")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.01, 1.01)
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
 
 [node name="PivotNode" type="Node2D" parent="."]
 
@@ -714,14 +714,14 @@ modulate = Color(0.999034, 1, 0.971364, 1)
 position = Vector2(2.38419e-07, 19)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hl5qd")
-animation = &""
+animation = &"idle"
 offset = Vector2(1.045, 0.385)
 
 [node name="PlayerTop" type="AnimatedSprite2D" parent="PivotNode"]
 position = Vector2(0, -5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ek41f")
-animation = &""
+animation = &"idle"
 offset = Vector2(7.415, 0)
 
 [node name="SwordSlash" type="AnimatedSprite2D" parent="PivotNode"]
@@ -789,6 +789,11 @@ wait_time = 2.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("27_qtqh7")]
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(1.5, 2.8)
+
 [connection signal="area_entered" from="PivotNode/hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="LevelUpTimer" to="." method="_on_level_up_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -119,3 +119,15 @@ func _on_toggle_screen_button_pressed() -> void:
 		get_window().mode = Window.MODE_FULLSCREEN
 	elif  get_window().mode != Window.MODE_WINDOWED:
 		get_window().mode = Window.MODE_WINDOWED
+
+
+func _on_delete_save_button_pressed() -> void:
+	var dir = DirAccess.open(save_folder)
+	var selected_index = $LoadGameWindow/SavesList.get_selected_items()
+	if selected_index.size() == 0:
+		print("nohing is selected")
+		return
+	var save_path = save_files[selected_index[0]]
+	dir.remove(save_path)
+	load_saves()
+	

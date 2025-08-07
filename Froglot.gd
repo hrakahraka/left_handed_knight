@@ -36,7 +36,8 @@ func _physics_process(delta):
 		$PivotNode/AnimatedSprite2D.play("dead")
 		death_animation_played = true
 	if not dead:
-		if $PivotNode/LineOfSight.is_colliding():
+		var target = $PivotNode/LineOfSight.get_collider()
+		if $PivotNode/LineOfSight.is_colliding() and target.name == "Player":
 			player_detected = true
 		if not is_on_floor():
 			velocity.y += gravity * delta

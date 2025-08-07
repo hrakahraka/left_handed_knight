@@ -21,6 +21,7 @@ keycode = 4194309
 events = [SubResource("InputEventKey_qe12f")]
 
 [node name="MainMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,6 +75,7 @@ size = Vector2i(600, 250)
 visible = false
 
 [node name="LineEdit" type="LineEdit" parent="NewGameWindow"]
+texture_filter = 1
 offset_left = 46.0
 offset_top = 73.0
 offset_right = 568.0
@@ -83,6 +85,7 @@ placeholder_text = "Enter your Name"
 alignment = 1
 
 [node name="ConfirmNewGameButton" type="Button" parent="NewGameWindow"]
+texture_filter = 1
 offset_left = 189.0
 offset_top = 172.0
 offset_right = 415.0
@@ -92,6 +95,7 @@ shortcut = SubResource("Shortcut_nlkkf")
 text = "confirm"
 
 [node name="Label" type="Label" parent="NewGameWindow"]
+texture_filter = 1
 offset_left = 139.0
 offset_top = 124.0
 offset_right = 477.0
@@ -102,9 +106,9 @@ vertical_alignment = 1
 [node name="LoadGameWindow" type="Window" parent="."]
 initial_position = 1
 size = Vector2i(600, 300)
-visible = false
 
 [node name="SavesList" type="ItemList" parent="LoadGameWindow"]
+texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -114,13 +118,30 @@ offset_bottom = 237.0
 grow_horizontal = 2
 
 [node name="ConfirmLoadGameButton" type="Button" parent="LoadGameWindow"]
-offset_left = 187.0
-offset_top = 251.0
-offset_right = 413.0
-offset_bottom = 294.0
+texture_filter = 1
+offset_left = 39.0
+offset_top = 250.0
+offset_right = 265.0
+offset_bottom = 293.0
 theme_override_colors/font_color = Color(0, 0.454902, 1, 1)
 shortcut = SubResource("Shortcut_8qtwp")
 text = "confirm"
+
+[node name="DeleteSaveButton" type="Button" parent="LoadGameWindow"]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -47.0
+offset_right = -63.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.0405034, 0.0223529, 1)
+text = "Delete"
 
 [node name="QuitGameButton" type="Button" parent="."]
 layout_mode = 1
@@ -158,5 +179,6 @@ flat = true
 [connection signal="pressed" from="NewGameWindow/ConfirmNewGameButton" to="." method="_on_confirm_new_game_button_pressed"]
 [connection signal="close_requested" from="LoadGameWindow" to="." method="_on_load_game_window_close_requested"]
 [connection signal="pressed" from="LoadGameWindow/ConfirmLoadGameButton" to="." method="_on_confirm_load_game_button_pressed"]
+[connection signal="pressed" from="LoadGameWindow/DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]
 [connection signal="pressed" from="QuitGameButton" to="." method="_on_quit_game_button_pressed"]
 [connection signal="pressed" from="ToggleScreenButton" to="." method="_on_toggle_screen_button_pressed"]

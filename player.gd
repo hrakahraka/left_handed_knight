@@ -140,12 +140,12 @@ func level_up():
 	level_up_count += 1 
 	if level_up_count >= 2:
 		max_health += 1
+		damage_value += 1
 		level_up_count = 0
 		$HUD.add_heart()
 		added_hearts += 1
 	HP_points = max_health
 	$HUD.update_heart()
-	damage_value += 1
 	xp_points = xp_points - xp_for_next_level
 	xp_for_next_level = level * 200
 
@@ -241,3 +241,7 @@ func flashing():
 		$PivotNode/PlayerTop.visible = true
 		$PivotNode/PlayerBottom.visible = true
 		await get_tree().create_timer(0.1).timeout
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	global_position = checkpoint.global_position
