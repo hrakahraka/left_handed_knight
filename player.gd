@@ -171,8 +171,7 @@ func _on_hud_respawn() -> void:
 
 func _on_checkpoint_reached():
 	checkpoint.global_position = global_position
-	HP_points = max_health
-	$HUD.update_heart()
+	heal_all(max_health)
 	save_progress()
 
 
@@ -245,3 +244,22 @@ func flashing():
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	global_position = checkpoint.global_position
+
+
+func heal(amount):
+	if HP_points < max_health:
+		for i in range(amount):
+			HP_points += 1
+			$HUD.update_heart()
+
+
+
+func heal_all(max_health):
+	while HP_points < max_health:
+		HP_points += 1
+		$HUD.update_heart()
+		await get_tree().create_timer(0.5).timeout
+
+
+func _on_holy_butterfly_touched() -> void:
+	heal(1)

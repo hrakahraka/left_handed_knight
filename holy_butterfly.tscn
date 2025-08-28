@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://clgkbrokki1of"]
+
+[ext_resource type="Script" uid="uid://djeur5e8uk352" path="res://holy_butterfly.gd" id="1_16m3m"]
+[ext_resource type="Texture2D" uid="uid://852iuxcwcro3" path="res://Animations/HolyButterfly/frame0001.png" id="2_hgcho"]
+[ext_resource type="Texture2D" uid="uid://c88gukvtrh8xc" path="res://Animations/HolyButterfly/frame0002.png" id="3_rgjle"]
+[ext_resource type="Texture2D" uid="uid://dejrc3bitvmg8" path="res://Animations/HolyButterfly/frame0003.png" id="4_d4cdy"]
+[ext_resource type="Texture2D" uid="uid://kulmbeboqesb" path="res://Animations/HolyButterfly/frame0004.png" id="5_55ghq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5ivl"]
+size = Vector2(39, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p58g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgcho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rgjle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d4cdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55ghq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_16m3m"]
+resource_name = "Float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.428116, 0.803728),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, -7), Vector2(-1, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_hgcho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgjle"]
+_data = {
+&"Float": SubResource("Animation_16m3m"),
+&"RESET": SubResource("Animation_hgcho")
+}
+
+[node name="HolyButterfly" type="Area2D"]
+collision_layer = 0
+collision_mask = 65536
+script = ExtResource("1_16m3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.38419e-07, 0)
+rotation = 0.516617
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_s5ivl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = 0.516617
+sprite_frames = SubResource("SpriteFrames_5p58g")
+animation = &"Idle"
+frame_progress = 0.55699
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rgjle")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

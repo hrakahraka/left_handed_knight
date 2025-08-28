@@ -1,9 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://df1s72b62gtjm"]
+[gd_scene load_steps=7 format=3 uid="uid://df1s72b62gtjm"]
 
 [ext_resource type="Script" uid="uid://268gy4woy4xi" path="res://checkpoint_mark.gd" id="1_23doi"]
+[ext_resource type="Texture2D" uid="uid://b5ccr4l1r64y3" path="res://CheckpointTextures/SunlightAltar.png" id="2_lagot"]
+[ext_resource type="PackedScene" uid="uid://dumj2ojvapinx" path="res://checkpont_guardians.tscn" id="3_ggasn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwya6"]
 size = Vector2(154, 26)
+
+[sub_resource type="Animation" id="Animation_ggasn"]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtop1"]
+_data = {
+&"Appear": SubResource("Animation_ggasn")
+}
 
 [node name="CheckpointMark" type="Area2D"]
 collision_layer = 0
@@ -12,5 +34,40 @@ script = ExtResource("1_23doi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -5)
 shape = SubResource("RectangleShape2D_lwya6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(0, -23.985)
+texture = ExtResource("2_lagot")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mtop1")
+}
+
+[node name="CheckpontGuardians" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(151, -173)
+scale = Vector2(-0.4, 0.4)
+
+[node name="CheckpontGuardians5" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-127, -60)
+scale = Vector2(0.4, 0.4)
+
+[node name="CheckpontGuardians2" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-79, -228)
+scale = Vector2(0.5, 0.5)
+
+[node name="CheckpontGuardians3" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(82, -180)
+scale = Vector2(-0.7, 0.7)
+
+[node name="CheckpontGuardians6" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-170, -167)
+scale = Vector2(0.7, 0.7)
+
+[node name="CheckpontGuardians4" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(134, -71)
+scale = Vector2(-0.5, 0.5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
