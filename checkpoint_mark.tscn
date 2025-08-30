@@ -8,23 +8,83 @@
 size = Vector2(154, 26)
 
 [sub_resource type="Animation" id="Animation_ggasn"]
-resource_name = "Appear"
+resource_name = "coming"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("CheckpontGuardians:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(589, -363), Vector2(151, -173)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CheckpontGuardians5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-747, 129), Vector2(-127, -60)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CheckpontGuardians2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-632, -455), Vector2(-79, -228)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CheckpontGuardians3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(101, -619), Vector2(82, -180)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CheckpontGuardians6:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-912, -176), Vector2(-170, -167)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CheckpontGuardians4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(722, 103), Vector2(134, -71)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mtop1"]
 _data = {
-&"Appear": SubResource("Animation_ggasn")
+&"coming": SubResource("Animation_ggasn")
 }
 
 [node name="CheckpointMark" type="Area2D"]
@@ -36,38 +96,43 @@ position = Vector2(2, -5)
 shape = SubResource("RectangleShape2D_lwya6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 position = Vector2(0, -23.985)
 texture = ExtResource("2_lagot")
+
+[node name="CheckpontGuardians" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(589, -363)
+scale = Vector2(-0.4, 0.4)
+
+[node name="CheckpontGuardians5" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-747, 129)
+scale = Vector2(0.4, 0.4)
+
+[node name="CheckpontGuardians2" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-632, -455)
+scale = Vector2(0.5, 0.5)
+
+[node name="CheckpontGuardians3" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(101, -619)
+scale = Vector2(-0.7, 0.7)
+
+[node name="CheckpontGuardians6" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(-912, -176)
+scale = Vector2(0.7, 0.7)
+
+[node name="CheckpontGuardians4" parent="." instance=ExtResource("3_ggasn")]
+position = Vector2(722, 103)
+scale = Vector2(-0.5, 0.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_mtop1")
 }
 
-[node name="CheckpontGuardians" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(151, -173)
-scale = Vector2(-0.4, 0.4)
-
-[node name="CheckpontGuardians5" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(-127, -60)
-scale = Vector2(0.4, 0.4)
-
-[node name="CheckpontGuardians2" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(-79, -228)
-scale = Vector2(0.5, 0.5)
-
-[node name="CheckpontGuardians3" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(82, -180)
-scale = Vector2(-0.7, 0.7)
-
-[node name="CheckpontGuardians6" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(-170, -167)
-scale = Vector2(0.7, 0.7)
-
-[node name="CheckpontGuardians4" parent="." instance=ExtResource("3_ggasn")]
-position = Vector2(134, -71)
-scale = Vector2(-0.5, 0.5)
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="reached" from="." to="CheckpontGuardians" method="_on_checkpoint_mark_reached"]
+[connection signal="reached" from="." to="CheckpontGuardians5" method="_on_checkpoint_mark_reached"]
+[connection signal="reached" from="." to="CheckpontGuardians2" method="_on_checkpoint_mark_reached"]
+[connection signal="reached" from="." to="CheckpontGuardians3" method="_on_checkpoint_mark_reached"]
+[connection signal="reached" from="." to="CheckpontGuardians6" method="_on_checkpoint_mark_reached"]
+[connection signal="reached" from="." to="CheckpontGuardians4" method="_on_checkpoint_mark_reached"]

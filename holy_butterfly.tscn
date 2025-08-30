@@ -1,10 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://clgkbrokki1of"]
+[gd_scene load_steps=23 format=3 uid="uid://clgkbrokki1of"]
 
 [ext_resource type="Script" uid="uid://djeur5e8uk352" path="res://holy_butterfly.gd" id="1_16m3m"]
 [ext_resource type="Texture2D" uid="uid://852iuxcwcro3" path="res://Animations/HolyButterfly/frame0001.png" id="2_hgcho"]
 [ext_resource type="Texture2D" uid="uid://c88gukvtrh8xc" path="res://Animations/HolyButterfly/frame0002.png" id="3_rgjle"]
 [ext_resource type="Texture2D" uid="uid://dejrc3bitvmg8" path="res://Animations/HolyButterfly/frame0003.png" id="4_d4cdy"]
 [ext_resource type="Texture2D" uid="uid://kulmbeboqesb" path="res://Animations/HolyButterfly/frame0004.png" id="5_55ghq"]
+[ext_resource type="Texture2D" uid="uid://iod4diiuu0v0" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0001.png" id="6_66w7i"]
+[ext_resource type="Texture2D" uid="uid://c6ldxp3j2hrqt" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0002.png" id="7_0l8ms"]
+[ext_resource type="Texture2D" uid="uid://bhi26xenl66ai" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0003.png" id="8_8v22l"]
+[ext_resource type="Texture2D" uid="uid://bg06emp0gyxic" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0004.png" id="9_vpdgb"]
+[ext_resource type="Texture2D" uid="uid://bttm8gjgek334" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0005.png" id="10_rbka1"]
+[ext_resource type="Texture2D" uid="uid://c7c5auda7nltw" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0006.png" id="11_h6gsy"]
+[ext_resource type="Texture2D" uid="uid://cwloy1240tn4s" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0008.png" id="12_v44ob"]
+[ext_resource type="Texture2D" uid="uid://bux214dxrdme3" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0007.png" id="13_st275"]
+[ext_resource type="Texture2D" uid="uid://q8ueg2iy5rev" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0009.png" id="14_2wu71"]
+[ext_resource type="Texture2D" uid="uid://chhvrorqryjw5" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0010.png" id="15_6ircd"]
+[ext_resource type="Texture2D" uid="uid://sl1aw646sawx" path="res://Animations/HolyButterfly/pop-up animation/pop-up_0011.png" id="16_j37ln"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5ivl"]
 size = Vector2(39, 48)
@@ -26,6 +37,47 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_66w7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0l8ms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8v22l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8v22l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vpdgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rbka1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_h6gsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v44ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_st275")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2wu71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6ircd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_j37ln")
+}],
+"loop": false,
+"name": &"pop-up",
 "speed": 5.0
 }]
 
@@ -57,13 +109,30 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(3, -83)]
+}
+
+[sub_resource type="Animation" id="Animation_rgjle"]
+resource_name = "healing"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.22, 0.26, 0.3, 0.35, 0.41, 0.45, 0.48, 0.53, 0.58, 0.65, 0.71, 0.78, 0.84, 0.9, 0.97, 1.04, 1.09, 1.16, 1.21, 1.29, 1.34, 1.42, 1.47, 1.55, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.161329, -0.376434), Vector2(-91, -2), Vector2(-124, -42), Vector2(-122, -76), Vector2(-122, -89), Vector2(-100, -81), Vector2(-52, -120), Vector2(-14, -143), Vector2(29, -135), Vector2(86, -133), Vector2(114, -100), Vector2(158, -60), Vector2(161, -4.76837e-07), Vector2(159, 64), Vector2(137, 104), Vector2(84, 134), Vector2(-3, 138), Vector2(-84, 130), Vector2(-128, 113), Vector2(-163, 60), Vector2(-165, 4.99999), Vector2(-155, -72), Vector2(-134, -101), Vector2(-106, -124), Vector2(-77, -121), Vector2(-25, -123), Vector2(7.62939e-06, -106)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgjle"]
 _data = {
 &"Float": SubResource("Animation_16m3m"),
-&"RESET": SubResource("Animation_hgcho")
+&"RESET": SubResource("Animation_hgcho"),
+&"healing": SubResource("Animation_rgjle")
 }
 
 [node name="HolyButterfly" type="Area2D"]
@@ -73,16 +142,15 @@ script = ExtResource("1_16m3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.38419e-07, 0)
-rotation = 0.516617
-scale = Vector2(1, 1)
+rotation = 0.523599
 shape = SubResource("RectangleShape2D_s5ivl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-rotation = 0.516617
+position = Vector2(3, -83)
+rotation = 0.523599
 sprite_frames = SubResource("SpriteFrames_5p58g")
 animation = &"Idle"
-frame_progress = 0.55699
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

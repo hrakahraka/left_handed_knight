@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+signal player_hit
 
 @export var speed = 400
 @export var jump_force = 600
@@ -113,6 +113,7 @@ func _process(delta):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if (not dead) and (not invincible):
+		emit_signal("player_hit")
 		$InvincibilityTimer.start()
 		invincible = true
 		flash_on_hit()
@@ -171,7 +172,15 @@ func _on_hud_respawn() -> void:
 
 func _on_checkpoint_reached():
 	checkpoint.global_position = global_position
-	heal_all(max_health)
+	await get_tree().create_timer(1).timeout
+	if HP_points < max_health:
+		heal_all(max_health)
+	save_progress()
+
+
+func _on_checkpoint_entered():
+	if HP_points < max_health:
+		heal_all(max_health)
 	save_progress()
 
 
@@ -247,6 +256,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 func heal(amount):
+	healing_flash()
 	if HP_points < max_health:
 		for i in range(amount):
 			HP_points += 1
@@ -255,10 +265,19 @@ func heal(amount):
 
 
 func heal_all(max_health):
+	healing_flash()
 	while HP_points < max_health:
 		HP_points += 1
 		$HUD.update_heart()
 		await get_tree().create_timer(0.5).timeout
+
+
+func healing_flash():
+	$PivotNode/PlayerTop.modulate = Color(999, 999, 999)  
+	$PivotNode/PlayerBottom.modulate = Color(999, 999, 999)
+	await get_tree().create_timer(0.2).timeout
+	$PivotNode/PlayerTop.modulate = Color(1, 1, 1)  
+	$PivotNode/PlayerBottom.modulate = Color(1, 1, 1)
 
 
 func _on_holy_butterfly_touched() -> void:
