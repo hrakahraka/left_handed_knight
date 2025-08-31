@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Left_Handed_Knight"
+config/version="1.0"
 run/main_scene="uid://k7saa4rupxgr"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cgy23qq7v7cg3"
 
 [autoload]
 

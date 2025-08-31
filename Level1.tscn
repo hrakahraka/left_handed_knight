@@ -108,7 +108,7 @@ sources/2 = SubResource("TileSetAtlasSource_s3sxq")
 script = ExtResource("1_lmyl5")
 
 [node name="Player" parent="." instance=ExtResource("2_mlbie")]
-position = Vector2(60, 294)
+position = Vector2(74, 321)
 checkpoint_path = NodePath("../Checkpoint")
 metadata/_edit_group_ = true
 
@@ -146,6 +146,7 @@ position = Vector2(-1305, 540)
 position = Vector2(-1194, 504)
 
 [node name="Checkpoint" type="Marker2D" parent="."]
+position = Vector2(74, 321)
 
 [node name="CheckpointMark" parent="." instance=ExtResource("6_5g1s2")]
 position = Vector2(-1811, 395)

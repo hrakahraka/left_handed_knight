@@ -36,8 +36,9 @@ func _physics_process(delta):
 		$PivotNode/AnimatedSprite2D.play("dead")
 		death_animation_played = true
 	if not dead:
-		var target = $PivotNode/LineOfSight.get_collider()
-		if $PivotNode/LineOfSight.is_colliding() and target.name == "Player":
+		var target_front = $PivotNode/LineOfSight.get_collider()
+		var target_Back = $PivotNode/BackCheck.get_collider()
+		if ($PivotNode/LineOfSight.is_colliding() and target_front.name == "Player") or ($PivotNode/BackCheck.is_colliding() and target_Back.name == "Player"):
 			player_detected = true
 		if not is_on_floor():
 			velocity.y += gravity * delta
@@ -52,11 +53,11 @@ func _physics_process(delta):
 			if $PivotNode/WallCheck.is_colliding() or not ($PivotNode/EdgeCheck.is_colliding()):
 				direction *= -1
 				$PivotNode.scale.x *= -1
-		elif player_detected and is_on_floor():
-			if player.global_position > global_position:
+		elif player_detected :
+			if (player.global_position > global_position) and is_on_floor():
 				direction = 1
 				$PivotNode.scale.x = 1
-			elif player.global_position < global_position:
+			elif (player.global_position < global_position) and is_on_floor():
 				direction = -1
 				$PivotNode.scale.x = -1
 		move_and_slide()
