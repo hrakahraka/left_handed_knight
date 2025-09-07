@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://k7saa4rupxgr"]
+[gd_scene load_steps=11 format=3 uid="uid://k7saa4rupxgr"]
 
 [ext_resource type="Texture2D" uid="uid://evj3tt0xlrjk" path="res://Main_Menue_Textures/ButtonTexture(newgame).PNG.png" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://cfkpdh260y3gq" path="res://Main_Menue_Textures/BackGround.png" id="1_fu7sn"]
 [ext_resource type="Script" uid="uid://xjhpwhvq2klc" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://cmf2kbubgldoc" path="res://Main_Menue_Textures/ButtonTexture(loadgame).PNG.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://dcsjfk546c8d4" path="res://Animations/enemies/froglot/idle/untitled_0001.png" id="5_glbon"]
+[ext_resource type="Texture2D" uid="uid://j46a0vc2ykox" path="res://Main_Menue_Textures/Title.png" id="6_nlkkf"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_glbon"]
 device = -1
@@ -47,15 +48,15 @@ texture = ExtResource("1_fu7sn")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.581
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.581
 offset_left = -175.5
-offset_top = -129.0
+offset_top = -128.822
 offset_right = 175.5
-offset_bottom = 129.0
+offset_bottom = 129.178
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
@@ -106,6 +107,7 @@ vertical_alignment = 1
 [node name="LoadGameWindow" type="Window" parent="."]
 initial_position = 1
 size = Vector2i(600, 300)
+visible = false
 
 [node name="SavesList" type="ItemList" parent="LoadGameWindow"]
 texture_filter = 1
@@ -172,6 +174,15 @@ offset_right = -21.0
 offset_bottom = 63.0
 grow_horizontal = 0
 flat = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 307.0
+offset_top = 18.0
+offset_right = 841.0
+offset_bottom = 227.0
+texture = ExtResource("6_nlkkf")
+expand_mode = 1
 
 [connection signal="pressed" from="Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Buttons/LoadGameButton" to="." method="_on_load_game_button_pressed"]

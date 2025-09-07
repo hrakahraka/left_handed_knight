@@ -73,7 +73,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("jump"):
 				velocity.y += -jump_force
 				double_jump = true
-			if Input.is_action_pressed("attack") and is_on_floor():
+			if Input.is_action_pressed("attack"):
 				is_attacking = true
 				if velocity.x == 0:
 					anim_tree.get("parameters/playback").travel("attack_stand")
@@ -81,6 +81,7 @@ func _physics_process(delta):
 				else:
 					anim_tree.get("parameters/playback").travel("attack_walk")
 					$PivotNode/SwordSlash.play("sword_slash")
+					
 			if not Input.is_action_pressed("attack"):
 				is_attacking = false
 		move_and_slide()
