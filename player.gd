@@ -61,8 +61,9 @@ func _physics_process(delta):
 		if direction != 0:
 			velocity.x = direction * speed
 			
-		elif (not hit) and is_on_floor():
+		elif (Input.is_action_just_released("move_left")) or (Input.is_action_just_released("move_right")):
 			velocity.x = 0
+	
 			
 		if not is_on_floor():
 			jump_window_timer += delta
@@ -83,18 +84,17 @@ func _physics_process(delta):
 				velocity.y += -jump_force
 				double_jump = true
 				
-			if (Input.is_action_pressed("attack")) and (is_on_floor()):
-				is_attacking = true
-				
-				if velocity.x == 0:
-					anim_tree.get("parameters/playback").travel("attack_stand")
-					$PivotNode/SwordSlash.play("sword_slash")
-				else:
-					anim_tree.get("parameters/playback").travel("attack_walk")
-					$PivotNode/SwordSlash.play("sword_slash")
+		if (Input.is_action_pressed("attack")):
+			is_attacking = true
+			
+			if velocity.x == 0 or (not is_on_floor()):
+				anim_tree.get("parameters/playback").travel("attack_stand")
+				$PivotNode/SwordSlash.play("sword_slash")
 			else:
-				is_attacking = false
-		
+				anim_tree.get("parameters/playback").travel("attack_walk")
+				$PivotNode/SwordSlash.play("sword_slash")
+		else:
+			is_attacking = false
 		move_and_slide()
 
 
@@ -117,7 +117,7 @@ func _process(delta):
 					anim_tree.get("parameters/playback").travel("walk")
 				elif velocity.x == 0 and velocity.y == 0 :
 					anim_tree.get("parameters/playback").travel("idle")
-		if not is_on_floor():
+		if not is_on_floor() and (not is_attacking):
 			anim_tree.get("parameters/playback").travel("mid_air")
 	else :
 		anim_tree.get("parameters/playback").travel("death")
@@ -151,8 +151,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			else:
 				velocity.x += -enemy.knockback_power
 				velocity.y += -150
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.2).timeout
 		hit = false
+		velocity.x = 0
 
 
 func level_up():
