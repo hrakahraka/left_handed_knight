@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://y4e6xavoypyb"]
+[gd_scene load_steps=104 format=3 uid="uid://y4e6xavoypyb"]
 
 [ext_resource type="Script" uid="uid://thiav63lercy" path="res://player.gd" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://cnfd8k6n1uich" path="res://Animations/player/attack/bottom/frame0.png" id="2_5tmop"]
@@ -677,22 +677,26 @@ node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Time
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2wuci"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iruf7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5n4i"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j5n4i"]
 states/Start/position = Vector2(426.091, -34.0737)
 states/attack_stand/node = SubResource("AnimationNodeBlendTree_j5n4i")
-states/attack_stand/position = Vector2(210.913, 96.5646)
+states/attack_stand/position = Vector2(272.246, 99.2531)
 states/attack_walk/node = SubResource("AnimationNodeBlendTree_hl5qd")
-states/attack_walk/position = Vector2(212.249, 288.284)
+states/attack_walk/position = Vector2(272.69, 295.692)
 states/death/node = SubResource("AnimationNodeBlendTree_634y6")
-states/death/position = Vector2(397.667, 197.471)
+states/death/position = Vector2(426.677, 205.471)
 states/idle/node = SubResource("AnimationNodeBlendTree_331ug")
-states/idle/position = Vector2(426.667, 95.1734)
+states/idle/position = Vector2(423.69, 24.5067)
 states/mid_air/node = SubResource("AnimationNodeBlendTree_1xqrm")
-states/mid_air/position = Vector2(571.334, 99.0833)
+states/mid_air/position = Vector2(559.082, 96.5368)
 states/walk/node = SubResource("AnimationNodeBlendTree_2wuci")
 states/walk/position = Vector2(560.478, 294.84)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv"), "attack_stand", "attack_walk", SubResource("AnimationNodeStateMachineTransition_qtqh7"), "attack_walk", "attack_stand", SubResource("AnimationNodeStateMachineTransition_2wuci")]
-graph_offset = Vector2(-187, 43.355)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_bfour"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8gr2b"), "walk", "mid_air", SubResource("AnimationNodeStateMachineTransition_vl8ci"), "mid_air", "walk", SubResource("AnimationNodeStateMachineTransition_ieltc"), "idle", "mid_air", SubResource("AnimationNodeStateMachineTransition_fddr8"), "mid_air", "idle", SubResource("AnimationNodeStateMachineTransition_oybyf"), "idle", "attack_stand", SubResource("AnimationNodeStateMachineTransition_ajfva"), "attack_stand", "idle", SubResource("AnimationNodeStateMachineTransition_5ef02"), "walk", "attack_walk", SubResource("AnimationNodeStateMachineTransition_pfmca"), "attack_walk", "walk", SubResource("AnimationNodeStateMachineTransition_76oay"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_hl5qd"), "attack_stand", "death", SubResource("AnimationNodeStateMachineTransition_hiqhm"), "mid_air", "death", SubResource("AnimationNodeStateMachineTransition_tkwlq"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_ek41f"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_khis8"), "attack_walk", "death", SubResource("AnimationNodeStateMachineTransition_b88wv"), "attack_stand", "attack_walk", SubResource("AnimationNodeStateMachineTransition_qtqh7"), "attack_walk", "attack_stand", SubResource("AnimationNodeStateMachineTransition_2wuci"), "attack_stand", "mid_air", SubResource("AnimationNodeStateMachineTransition_iruf7"), "mid_air", "attack_stand", SubResource("AnimationNodeStateMachineTransition_j5n4i")]
+graph_offset = Vector2(-187, -59.1083)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(25.75, 54)
@@ -769,7 +773,7 @@ position = Vector2(-3.875, -2)
 shape = SubResource("RectangleShape2D_ivps1")
 
 [node name="hurtbox" type="Area2D" parent="PivotNode"]
-collision_layer = 65536
+collision_layer = 65540
 collision_mask = 2
 metadata/_edit_group_ = true
 

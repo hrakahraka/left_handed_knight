@@ -24,6 +24,10 @@ Global="*res://global.gd"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+Enemies=""
+
 [input]
 
 jump={

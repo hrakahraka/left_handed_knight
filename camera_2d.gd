@@ -4,6 +4,7 @@ var shake_strength: float
 var shake_duration: float
 var time_left = 0.0
 var original_offset : Vector2
+@export var world_rect : Rect2
 
 
 func _ready() -> void:

@@ -71,14 +71,14 @@ func _process(delta: float) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if not dead:
 		player_pos = player.global_position
-		if player.is_attacking :
-			HP_points -= player.damage_value
-			if player_pos < global_position:
-				velocity.x += 500
-				velocity.y += -200
-			else:
-				velocity.x += -500
-				velocity.y += -200
+		HP_points -= player.damage_value
+		
+		if player_pos < global_position:
+			velocity.x += 500
+			velocity.y += -200
+		else:
+			velocity.x += -500
+			velocity.y += -200
 
 
 func _on_timer_timeout() -> void:

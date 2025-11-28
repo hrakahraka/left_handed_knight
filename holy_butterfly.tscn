@@ -150,9 +150,7 @@ texture_filter = 1
 position = Vector2(3, -83)
 rotation = 0.523599
 sprite_frames = SubResource("SpriteFrames_5p58g")
-animation = &"pop-up"
-frame = 11
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

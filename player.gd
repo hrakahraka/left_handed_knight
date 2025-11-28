@@ -51,39 +51,50 @@ func _physics_process(delta):
 		$HUD/RespawnButton.visible = true
 	if not dead:
 		var direction = 0
+		
 		if Input.is_action_pressed("move_right"):
 			direction += 1
+			
 		if Input.is_action_pressed("move_left"):
 			direction -=  1
+			
 		if direction != 0:
 			velocity.x = direction * speed
+			
 		elif (not hit) and is_on_floor():
 			velocity.x = 0
+			
 		if not is_on_floor():
 			jump_window_timer += delta
+			
 			if Input.is_action_just_released("jump") and velocity.y < 0:
 				velocity.y = 0
+				
 			if Input.is_action_just_pressed("jump") and double_jump:
 				velocity.y = -jump_force + 200
 				double_jump = false
 			elif jump_window_timer>JUMP_WINDOW :
 				velocity.y += gravity * delta
+				
 		else:
 			jump_window_timer = 0
+			
 			if Input.is_action_just_pressed("jump"):
 				velocity.y += -jump_force
 				double_jump = true
-			if Input.is_action_pressed("attack"):
+				
+			if (Input.is_action_pressed("attack")) and (is_on_floor()):
 				is_attacking = true
+				
 				if velocity.x == 0:
 					anim_tree.get("parameters/playback").travel("attack_stand")
 					$PivotNode/SwordSlash.play("sword_slash")
 				else:
 					anim_tree.get("parameters/playback").travel("attack_walk")
 					$PivotNode/SwordSlash.play("sword_slash")
-					
-			if not Input.is_action_pressed("attack"):
+			else:
 				is_attacking = false
+		
 		move_and_slide()
 
 
@@ -110,17 +121,26 @@ func _process(delta):
 			anim_tree.get("parameters/playback").travel("mid_air")
 	else :
 		anim_tree.get("parameters/playback").travel("death")
+	if is_attacking:
+		$PivotNode/hitbox/CollisionShape2D.disabled = false
+	else:
+		$PivotNode/hitbox/CollisionShape2D.disabled = true
+	
+	if invincible:
+		$PivotNode/hurtbox/CollisionShape2D.disabled = true
+	else:
+		$PivotNode/hurtbox/CollisionShape2D.disabled = false
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if (not dead) and (not invincible):
-		emit_signal("player_hit")
-		$InvincibilityTimer.start()
-		invincible = true
-		flash_on_hit()
-		flashing()
-		enemy = area.get_parent().get_parent()
+	if not dead:
+		enemy = area.owner
 		if enemy.is_in_group("Enemies"):
+			emit_signal("player_hit")
+			$InvincibilityTimer.start()
+			invincible = true
+			flash_on_hit()
+			flashing()
 			enemy_pos = enemy.global_position
 			hit = true
 			HP_points = clamp(HP_points - enemy.damage_value, 0, max_health)
