@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://k7saa4rupxgr"]
+[gd_scene load_steps=12 format=3 uid="uid://k7saa4rupxgr"]
 
 [ext_resource type="Texture2D" uid="uid://evj3tt0xlrjk" path="res://Main_Menue_Textures/ButtonTexture(newgame).PNG.png" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://cfkpdh260y3gq" path="res://Main_Menue_Textures/BackGround.png" id="1_fu7sn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cmf2kbubgldoc" path="res://Main_Menue_Textures/ButtonTexture(loadgame).PNG.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://dcsjfk546c8d4" path="res://Animations/enemies/froglot/idle/untitled_0001.png" id="5_glbon"]
 [ext_resource type="Texture2D" uid="uid://j46a0vc2ykox" path="res://Main_Menue_Textures/Title.png" id="6_nlkkf"]
+[ext_resource type="AudioStream" uid="uid://cda45j4f37pyc" path="res://music/Main_Menu_Music.wav" id="7_qe12f"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_glbon"]
 device = -1
@@ -164,6 +165,7 @@ icon = ExtResource("5_glbon")
 autowrap_mode = 3
 
 [node name="ToggleScreenButton" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -183,6 +185,9 @@ offset_right = 841.0
 offset_bottom = 227.0
 texture = ExtResource("6_nlkkf")
 expand_mode = 1
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qe12f")
 
 [connection signal="pressed" from="Buttons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Buttons/LoadGameButton" to="." method="_on_load_game_button_pressed"]

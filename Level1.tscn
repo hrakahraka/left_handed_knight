@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bkkdvfedbsteu"]
+[gd_scene load_steps=15 format=4 uid="uid://bkkdvfedbsteu"]
 
 [ext_resource type="Script" uid="uid://dipnu5p2gyry4" path="res://Level1.gd" id="1_lmyl5"]
 [ext_resource type="PackedScene" uid="uid://y4e6xavoypyb" path="res://player.tscn" id="2_mlbie"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cdf3oxlivjlj0" path="res://background.tscn" id="7_s3sxq"]
 [ext_resource type="PackedScene" uid="uid://clgkbrokki1of" path="res://holy_butterfly.tscn" id="8_s3sxq"]
 [ext_resource type="PackedScene" uid="uid://e5fueby4ukux" path="res://brown_bat.tscn" id="10_1bjei"]
+[ext_resource type="AudioStream" uid="uid://rjy7stgc4jsp" path="res://music/Level1_Music.wav" id="11_5g1s2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mlbie"]
 
@@ -173,6 +174,10 @@ position = Vector2(-2400, 59)
 
 [node name="BrownBat3" parent="." instance=ExtResource("10_1bjei")]
 position = Vector2(-1784, -573)
+
+[node name="Level1Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_5g1s2")
+max_distance = 9.22337e+18
 
 [connection signal="player_hit" from="Player" to="Player/Camera2D" method="_on_player_player_hit"]
 [connection signal="respawn" from="Player/HUD" to="Player" method="_on_hud_respawn"]

@@ -14,6 +14,7 @@ func _ready() -> void:
 	$LoadGameWindow.hide()
 	$NewGameWindow.hide()
 	load_saves()
+	$MainMenuMusic.play()
 
 func _process(delta: float) -> void:
 	if get_window().mode == Window.MODE_FULLSCREEN:
